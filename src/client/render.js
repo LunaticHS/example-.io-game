@@ -8,6 +8,8 @@ const Constants = require('../shared/constants');
 
 const { PLAYER_RADIUS, PLAYER_MAX_HP, BULLET_RADIUS, MAP_SIZE } = Constants;
 
+var rot = 0;
+
 // Get the canvas graphics context
 const canvas = document.getElementById('game-canvas');
 const context = canvas.getContext('2d');
@@ -74,9 +76,11 @@ function renderPlayer(me, player) {
   // Draw ship
   context.save();
   context.translate(canvasX, canvasY);
-  context.rotate(direction);
+  context.rotate(direction+1.57);
+  //context.rotate(rot);
+  //rot+= 0.01;
   context.drawImage(
-    getAsset('ship.svg'),
+    getAsset('slime5.svg'),
     -PLAYER_RADIUS,
     -PLAYER_RADIUS,
     PLAYER_RADIUS * 2,
