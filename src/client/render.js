@@ -61,6 +61,13 @@ function renderBackground(x, y) {
     backgroundY,
     MAP_SIZE / 2,
   );
+  context.drawImage(
+    getAsset('bg.jpg'),
+    backgroundX,
+    backgroundY,
+    MAP_SIZE / 2,
+    MAP_SIZE / 2,
+  );
   backgroundGradient.addColorStop(0, 'black');
   backgroundGradient.addColorStop(1, 'gray');
   context.fillStyle = backgroundGradient;
@@ -76,7 +83,7 @@ function renderPlayer(me, player) {
   // Draw ship
   context.save();
   context.translate(canvasX, canvasY);
-  context.rotate(direction+1.57);
+  //context.rotate(direction+1.57);
   //context.rotate(rot);
   //rot+= 0.01;
   context.drawImage(

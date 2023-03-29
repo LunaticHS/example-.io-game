@@ -7,6 +7,7 @@ class Game {
     this.sockets = {};
     this.players = {};
     this.bullets = [];
+    this.buffers = [];
     this.lastUpdateTime = Date.now();
     this.shouldSendUpdate = false;
     setInterval(this.update.bind(this), 1000 / 60);
@@ -32,6 +33,18 @@ class Game {
     }
   }
 
+  handleKeyInput(socket, speed) {
+    if (this.players[socket.id]) {
+      this.players[socket.id].setSpeed(speed);
+    }
+  }
+
+  handleFire(socket, dir) {
+    if (this.players[socket.id]) {
+      this.players[socket.id].fire(dir);
+    }
+  }
+
   update() {
     // Calculate time elapsed
     const now = Date.now();
@@ -52,7 +65,7 @@ class Game {
     Object.keys(this.sockets).forEach(playerID => {
       const player = this.players[playerID];
       const newBullet = player.update(dt);
-      if (newBullet) {
+      if(newBullet != null){
         this.bullets.push(newBullet);
       }
     });
